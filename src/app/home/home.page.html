@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-title><center>
+      Registro de datos de</center>
+    </ion-title>
+    <center><img class="db" height="32" loading="lazy" src="https://i5.walmartimages.com/dfw/63fd9f59-b3e1/7a569e53-f29a-4c3d-bfaf-6f7a158bfadd/v1/walmartLogo.svg" width="130" />
+    </center>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"><center>Registro de datos</center></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-item>
+    <ion-label position="floating">Nombre del producto</ion-label>
+    <ion-input type="text" placeholder="Ej: Leche sin lactosa Colun" #txtNombre></ion-input>
+  </ion-item>
+<ion-item>
+  <ion-label position="floating">Codigo de Serie</ion-label>
+  <ion-input type="text" placeholder="Ej: 123456789" #txtCodigo></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Precio del producto</ion-label>
+  <ion-input type="text" placeholder="Ej: 5000" #txtPrecio></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Grupo del producto</ion-label>
+  <ion-input type="text" placeholder="Ej: Grupo A-B-C-D" #txtGrupo></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Stock</ion-label>
+  <ion-input type="text" placeholder="Ej: Ingrese el stock disponible" #txtStock></ion-input>
+</ion-item>
+
+<div *ngIf=nombre,precio>
+  <ion-text color="primary">
+    <h1>Nombre:</h1>
+    <h2>{{nombre}}</h2>
+  </ion-text>
+  <ion-text color="secondary">
+    <h1>Precio:</h1>
+    <h2>{{precio}}</h2>
+  </ion-text>
+
+</div>
+<div *ngIf="lista.length >0">
+   
+  <ion-list>
+    <center><h1>Listado de Productos</h1></center>
+    <div *ngFor="let item of lista">
+      <ion-item>
+        <ion-label>Nombre : {{item[0].nombre}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio : {{item[0].precio}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Codigo : {{item[0].codigo}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Grupo de Producto : {{item[0].grupo}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Stock del Producto : {{item[0].stock}}</ion-label>
+      </ion-item>
+    -------------------------------------------------------------------------------------------------------------------------------------
+    </div>
+  </ion-list>
+
+
+</div>
+
+</ion-content>
+<ion-footer><center>
+  <ion-toolbar>
+    <ion-button (click)="agregar(txtNombre,txtCodigo,txtPrecio,txtGrupo,txtStock)">Agregar producto
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <ion-button (click)="buscar(txtNombre)">Buscar producto
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button (click)="listar()"> Mostrar Listado de Productos
+      <ion-icon slot="icon-only" name="list-outline"></ion-icon>
+    </ion-button>
+    <ion-button [routerLink]="['/informe-producto']">Ir a informe de ventas
+      <ion-icon slot="icon-only" name="arrow-redo-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar></center>
+</ion-footer>
